@@ -11,12 +11,13 @@ provider "aws" {
 }
 
 
+# Code for remote backend, AWS S3 bucket
 
 /*backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "supertech"
+    organization = ""
     workspaces {
-      name = "aws-work"
+      name = " "
     }
 
   }*/
