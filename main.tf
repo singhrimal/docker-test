@@ -1,12 +1,15 @@
+
+# Creating a VPC
 resource "aws_vpc" "myvpc" {
   cidr_block = var.vpc_cidr
-  
+
 
   tags = {
     "Name" = "myvpc"
   }
 }
 
+# Public Subnet
 resource "aws_subnet" "publicSubnet" {
   vpc_id            = aws_vpc.myvpc.id
   cidr_block        = var.publicSubnet_cidr
@@ -17,6 +20,19 @@ resource "aws_subnet" "publicSubnet" {
   }
 }
 
+# Private Subnet
+
+/*resource "aws_subnet" "privateSubnet" {
+  vpc_id            = aws_vpc.myvpc.id
+  cidr_block        = var.privateSubnet_cidr
+  availability_zone = var.az
+
+  tags = {
+    "Name" = "PrivateSubnet"
+  }
+}*/
+
+# Internet Gateway
 resource "aws_internet_gateway" "internetGateway" {
   vpc_id = aws_vpc.myvpc.id
 
@@ -25,6 +41,7 @@ resource "aws_internet_gateway" "internetGateway" {
   }
 }
 
+# Route table
 resource "aws_route_table" "routeTable" {
   vpc_id = aws_vpc.myvpc.id
   route {
@@ -37,7 +54,9 @@ resource "aws_route_table" "routeTable" {
   }
 }
 
+# Route table association
 resource "aws_route_table_association" "routeAssoc" {
-  route_table_id      = aws_route_table.routeTable.id
-  subnet_id  = aws_subnet.publicSubnet.id
+  route_table_id = aws_route_table.routeTable.id
+  subnet_id      = aws_subnet.publicSubnet.id
 }
+

@@ -7,17 +7,16 @@ terraform {
 }
 
 provider "aws" {
-  profile = ""
+  profile = "default"
 }
 
 
-# Code for remote backend, AWS S3 bucket
 
 /*backend "remote" {
     hostname     = "app.terraform.io"
-    organization = ""
+    organization = "supertech"
     workspaces {
-      name = " "
+      name = "aws-work"
     }
 
   }*/

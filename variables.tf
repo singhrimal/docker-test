@@ -5,3 +5,8 @@ variable "publicSubnet_cidr" {}
 variable "az" {
 
 }
+
+#variable "privateSubnet_cidr" {
+
+#}
+
