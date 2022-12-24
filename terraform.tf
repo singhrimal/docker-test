@@ -12,11 +12,3 @@ provider "aws" {
 
 
 
-/*backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "supertech"
-    workspaces {
-      name = "aws-work"
-    }
-
-  }*/

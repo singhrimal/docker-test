@@ -1,3 +1,5 @@
+
+# Lookup for Instance
 data "aws_ami" "amazon_linux_2" {
   most_recent = true
   owners      = ["amazon"]
@@ -13,16 +15,20 @@ data "aws_ami" "amazon_linux_2" {
   }
 }
 
+# data.aws_ami.amazon_linux_2.id
 # My EC2 instance
 resource "aws_instance" "DockerInstance" {
-  ami                         = data.aws_ami.amazon_linux_2.id
+  ami                         = data.aws_ami.amazon_linux_2
   instance_type               = "t2.micro"
-  subnet_id                   =  aws_subnet.publicSubnet.id
+  subnet_id                   = aws_subnet.publicSubnet.id
   vpc_security_group_ids      = [aws_security_group.InstanceSG.id]
-  key_name                    = "keyname.pem"
+  key_name                    = "keyname"
   associate_public_ip_address = "true"
 
   tags = {
     "Name" = "dockerInstance"
   }
 }
+
+
+
